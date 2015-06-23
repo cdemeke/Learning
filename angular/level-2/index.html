@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+</head>
+<body ng-controller="StoreController as store">
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="product in store.products">
+			<h3>
+				{{product.name}}
+				<em class="pull-right">{{product.price | currency}}</em>
+				<img ng-src="{{product.images[0].thumb}}"/>
+				
+				<section ng-controller="PanelController as panel">
+					<ul class="nav nav-pills">
+						<li ng-class="{active:panel.isSelected(1)}">
+							<a ng-click="panel.selectTab(1)" href="">Description</a>
+						</li>
+						<li ng-class="{active:panel.isSelected(2)}">
+							<a ng-click="panel.selectTab(2)" href="">Specifications</a>
+						</li>
+						<li ng-class="{active:panel.isSelected(3)}">
+							<a ng-click="panel.selectTab(3)" href="">Reviews</a>
+						</li>
+					</ul>
+					<div class="panel" ng-show="panel.isSelected(1)">
+						<h4>Description</h4>
+						<p>{{product.description}}</p>
+					</div>
+					<div class="panel" ng-show="panel.isSelected(2)">
+						<h4>Specifications</h4>
+						<blockquote>None yet</blockquote>
+					</div>
+					<div class="panel" ng-show="panel.isSelected(3)">
+						<h4>Reviews</h4>
+						<blockquote>None yet</blockquote>
+					</div>
+				</section>
+			</h3>
+		</li>
+	
+
+	
+	{{tab}}
+	</ul>
+
+	<script type="text/javascript" src="../vendor/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
